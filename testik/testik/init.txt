@@ -1,0 +1,20 @@
+Spusteni serveru
+
+
+je nutn� aktivovat python verzi 2.7.13 v /root/venvs/python2713
+
+source /root/venvs/python2713/bin/activate
+
+Samotn� spu�ten� serveru (be�� i po ukoncen� termin�lu)
+
+cd /opt/webapps/testik
+
+python manage.py collectstatic
+
+gunicorn testik.wsgi:application --bind 0.0.0.0:8000 & >/dev/null 2> log.txt
+
+Ctrl+Z
+
+bg
+
+Enter

@@ -1,0 +1,69 @@
+{% extends 'webapp/header.html' %}
+
+<title>SteemIt</title>
+
+{% block body %}
+
+
+
+
+
+<div class="container">
+    <h1>Steemit social platform recommendation system</h1>
+
+    <div class="col-md-10">
+
+
+{% if posts %}
+
+        {% for post in posts %}
+            <div class="post">
+        <h3><a href="{% url 'post_detail' post.id %}">{{ post.title}}</a></h3>
+
+        <p>{{post.body}}</p>
+                 categories:
+
+            <span>{{post.category}}</span>
+
+
+
+    </div>
+        {% endfor %}
+
+
+
+    {% else %}
+    <p>No posts are available</p>
+
+{% endif %}
+
+    </div>
+
+    <div class="col-md-2">
+
+
+        {% include 'webapp/categories.html' %}
+    </div>
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% include 'webapp/footer.html' %}
+{% endblock %}
+
+
+

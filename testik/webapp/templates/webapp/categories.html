@@ -1,0 +1,9 @@
+<div class="categories">
+
+    <h4>Trending categories:</h4>
+    {% for cat in categories %}
+        <a href="{% url 'categories' cat.category %}">{{cat.category}}</a>
+    {% endfor %}
+
+
+</div>

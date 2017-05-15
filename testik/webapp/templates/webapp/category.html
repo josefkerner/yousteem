@@ -1,0 +1,51 @@
+{% extends 'webapp/header.html' %}
+
+
+{% block body %}
+
+    <title>kategorie</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Steemit social platform recommendation system</h1>
+
+    <div class="col-md-10">
+
+
+{% if posts %}
+
+        {% for post in posts %}
+            <div class="post">
+        <h3><a href="{% url 'post_detail' post.id %}">{{ post.title}}</a></h3>
+
+        <p>{{post.body}}</p>
+                 categories:
+
+            <span>{{post.category}}</span>
+
+
+
+    </div>
+        {% endfor %}
+
+
+
+    {% else %}
+    <p>No posts are available</p>
+
+{% endif %}
+
+    </div>
+
+    <div class="col-md-2">
+
+
+        {% include 'webapp/categories.html' %}
+    </div>
+
+
+</body>
+</html>
+
+{% endblock %}

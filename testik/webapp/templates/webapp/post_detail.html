@@ -1,0 +1,51 @@
+{% extends 'webapp/header.html' %}
+
+
+{% block body %}
+    <title>{{post.0.title}}</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="col-md-10 detail">
+
+        <h1>{{post.0.title}}</h1>
+        <span>author: {{post.0.author}}</span>
+
+        <div>
+        {% autoescape off %}{{ body }}{% endautoescape %}
+
+
+        </div>
+
+        <h2>See similar posts:</h2>
+
+        {% for post in similar %}
+            <div class="post">
+                <h3><a href="{% url 'post_detail' post.id %}">{{ post.title}}</a></h3>
+
+                <p>{{post.body}}</p>
+                 categories:
+
+                <span>{{post.category}}</span>
+
+
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-2">
+        {% include 'webapp/categories.html' %}
+
+    </div>
+
+
+
+
+</div>
+</body>
+</html>
+
+{% endblock %}
